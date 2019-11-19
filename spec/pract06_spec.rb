@@ -19,6 +19,10 @@ RSpec.describe Pract06 do
 			it "Existe la cantidad de emisiones de gases de efecto invernadero" do
 				expect(@carne_vaca.gei).to eq(50.0)
 			end
+
+			it "Existe la cantidad de terreno utilizado en m2año" do
+				expect(@carne_vaca.terreno).to eq(164.0)
+			end
 		end
 	end
 end
