@@ -4,7 +4,7 @@ RSpec.describe Pract06 do
 
 	describe Alimento do 	
 		before(:all) do
-			@carne_vaca = Alimento.new("Carne de vaca", 50.0)
+			@carne_vaca = Alimento.new("Carne de vaca", 50.0, 164.0)
 		end
 
 		context "Crear la clase Alimento" do
