@@ -27,6 +27,10 @@ RSpec.describe Pract06 do
 			it "Existe un metodo para obtener las emisiones de gases de efecto invernadero" do
 				expect(@carne_vaca.giv_gei(@gei)).to eq(50.0)
 			end
+
+			it "Existe un metodo para obtener el terreno utilizado" do 
+				expect(@carne_vaca.giv_terreno(@terreno)).to eq(164.0)
+			end
 		end
 	end
 end
