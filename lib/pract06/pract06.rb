@@ -10,4 +10,8 @@ class Alimento
 	def giv_nombre(nombre)
 		return @nombre	
 	end
+
+	#def giv_gei(gei)
+	#	return @gei
+	#end
 end
