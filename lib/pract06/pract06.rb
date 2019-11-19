@@ -11,7 +11,7 @@ class Alimento
 		return @nombre	
 	end
 
-	#def giv_gei(gei)
-	#	return @gei
-	#end
+	def giv_gei(gei)
+		return @gei
+	end
 end
