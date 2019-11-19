@@ -18,4 +18,8 @@ class Alimento
 	def giv_terreno(terreno)
 		return @terreno
 	end
+
+	def valor_energetico(proteinas, carbohidratos, lipidos)
+		return ((proteinas * 4) + (carbohidratos * 9) + (lipidos *4))
+	end
 end

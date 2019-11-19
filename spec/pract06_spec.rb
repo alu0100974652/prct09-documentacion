@@ -49,7 +49,7 @@ RSpec.describe Pract06 do
 			end
 
 			it "Existe un metodo para obtener el valor energético del alimento" do
-				expect(@carne_vaca.valor_energetico(@carne_vaca.proteinas,@carne_vaca.carbohidratos,@carne_vaca.lipidos)).to eq(5)
+				expect(@carne_vaca.valor_energetico(@carne_vaca.proteinas,@carne_vaca.carbohidratos,@carne_vaca.lipidos)).to eq(96.80000000000001)
 			end
 		end
 	end
