@@ -7,7 +7,7 @@ class Alimento
 		@nombre, @gei, @terreno = nombre, gei, terreno
 	end
 
-	def giv_nombre(nombre)
-		return @nombre	
-	end
+	#def giv_nombre(nombre)
+	#	return @nombre	
+	#end
 end
