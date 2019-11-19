@@ -7,7 +7,7 @@ class Alimento
 		@nombre = nombre
 	end
 
-	def giv_nombre
-	
+	def giv_nombre(nombre)
+		return @nombre	
 	end
 end

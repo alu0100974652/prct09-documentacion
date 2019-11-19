@@ -13,7 +13,7 @@ RSpec.describe Pract06 do
 			end
 
 			it "Hay un metodo que devuelve el nombre del alimetno" do
-				expect(@carne_vaca.giv_nombre(nombre)).to eq("Carne de vaca")
+				expect(@carne_vaca.giv_nombre(@nombre)).to eq("Carne de vaca")
 			end
 		end
 	end
