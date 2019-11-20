@@ -51,6 +51,10 @@ RSpec.describe Pract06 do
 			it "Existe un metodo para obtener el valor energético del alimento" do
 				expect(@carne_vaca.valor_energetico(@carne_vaca.proteinas,@carne_vaca.carbohidratos,@carne_vaca.lipidos)).to eq(96.80000000000001)
 			end
+
+			it "Existe un metodo para dar el alimento formateado" do
+				expect(@carne_vaca.to_s).to eq("Nombre: #{@carne_vaca.nombre}, Proteinas: #{@carne_vaca.proteinas}, Hidratos de carbono: #{@carne_vaca.carbohidratos}, Lipidos: #{@carne_vaca.lipidos}, Gases de efecto invernadero: #{@carne_vaca.gei}, Terreno: #{@carne_vaca.terreno}")
+			end
 		end
 	end
 end
