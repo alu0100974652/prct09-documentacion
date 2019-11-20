@@ -49,12 +49,43 @@ RSpec.describe Pract06 do
 			end
 
 			it "Existe un metodo para obtener el valor energético del alimento" do
-				expect(@carne_vaca.valor_energetico(@carne_vaca.proteinas,@carne_vaca.carbohidratos,@carne_vaca.lipidos)).to eq(96.80000000000001)
+				expect(@carne_vaca.valor_energetico(@carne_vaca.proteinas,@carne_vaca.carbohidratos,@carne_vaca.lipidos)).to eq(96.8)
 			end
 
 			it "Existe un metodo para dar el alimento formateado" do
 				expect(@carne_vaca.to_s).to eq("Nombre: #{@carne_vaca.nombre}, Proteinas: #{@carne_vaca.proteinas}, Hidratos de carbono: #{@carne_vaca.carbohidratos}, Lipidos: #{@carne_vaca.lipidos}, Gases de efecto invernadero: #{@carne_vaca.gei}, Terreno: #{@carne_vaca.terreno}")
 			end
+
+			it "Se calcula correctamente el impacto ambiental diario de un hombre 20-39" do
+				impactoGEIh = ((@carne_vaca.gei)*2 + (@salmon.gei)*2 + (@lentejas.gei)*2 + (@nuez.gei)*5).round(1)
+				boolh = false
+				consumoh = ((@carne_vaca.valor_energetico(@carne_vaca.proteinas,@carne_vaca.carbohidratos,@carne_vaca.lipidos))*2 + (@salmon.valor_energetico(@salmon.proteinas,@salmon.carbohidratos,@salmon.lipidos))*2 + (@lentejas.valor_energetico(@lentejas.proteinas,@lentejas.carbohidratos,@lentejas.lipidos))*2 + (@nuez.valor_energetico(@nuez.proteinas,@nuez.carbohidratos,@nuez.lipidos))*5).round(1)
+				ihproteinas = ((@carne_vaca.proteinas)*2 + (@salmon.proteinas)*2 + (@lentejas.proteinas)*2 + (@nuez.proteinas)*5).round(1)
+
+				impactoterrenoh = ((@carne_vaca.terreno)*2 + (@salmon.terreno)*2 + (@lentejas.terreno)*2 + (@nuez.terreno)*5).round(1)
+
+				if ihproteinas >= 54 and 3000 < consumoh then 
+					boolh = true
+				end
+				expect(impactoGEIh).to eq(114.3)
+				expect(impactoterrenoh).to eq(381.7)
+				expect(boolh).to eq(true)
+			end
+
+                        it "Se calcula correctamente el impacto ambiental diario de una mujer 20-39" do
+                                impactoGEIm = ((@carne_vaca.gei)*2 + (@salmon.gei)*2 + (@lentejas.gei)*2 + (@nuez.gei)*5).round(1)    
+				boolm = false
+                                consumom = ((@carne_vaca.valor_energetico(@carne_vaca.proteinas,@carne_vaca.carbohidratos,@carne_vaca.lipidos))*2 + (@salmon.valor_energetico(@salmon.proteinas,@salmon.carbohidratos,@salmon.lipidos))*2 + (@lentejas.valor_energetico(@lentejas.proteinas,@lentejas.carbohidratos,@lentejas.lipidos))*2 + (@nuez.valor_energetico(@nuez.proteinas,@nuez.carbohidratos,@nuez.lipidos))*5).round(1)
+                                improteinas = ((@carne_vaca.proteinas)*2 + (@salmon.proteinas)*2 + (@lentejas.proteinas)*2 + (@nuez.proteinas)*5).round(1)
+				impactoterrenom = ((@carne_vaca.terreno)*2 + (@salmon.terreno)*2 + (@lentejas.terreno)*2 + (@nuez.terreno)*5).round(1)   
+				if improteinas >= 41 and 2300 < consumom then
+					boolm = true
+				end       
+				expect(impactoGEIm).to eq(114.3)
+				expect(impactoterrenom).to eq(381.7)   
+				expect(boolm).to eq(true)   
+			end 
 		end
 	end
+
 end

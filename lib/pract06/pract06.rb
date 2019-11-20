@@ -20,10 +20,11 @@ class Alimento
 	end
 
 	def valor_energetico(proteinas, carbohidratos, lipidos)
-		return ((proteinas * 4) + (carbohidratos * 9) + (lipidos *4))
+		return ((proteinas * 4) + (carbohidratos * 9) + (lipidos *4)).round(1)
 	end
 
 	def to_s
 		"Nombre: #{nombre}, Proteinas: #{proteinas}, Hidratos de carbono: #{carbohidratos}, Lipidos: #{lipidos}, Gases de efecto invernadero: #{gei}, Terreno: #{terreno}"
 	end
+
 end
