@@ -7,9 +7,9 @@ class List
             @head = @tail = nil 
         end
         
-	#SE PUEDE INSERTAR UN ELEMENTO Y VARIOS ELEMENTOS
-        def add(value)
-            node = Node.new(value,nil)
+	#Se puede insertar varios elementos
+        def insert_head(value)
+            node = Node.new(value)
             
             if @head==nil
                 @head = node
@@ -20,8 +20,8 @@ class List
             @tail=node
 
         end
-        #SE EXTRAE EL PRIMER ELEMENTO DE LA LISTA
-        
+
+        #Se extrae el primer elemento de la lista        
         def extract_head
             aux=""
             if(@head == nil)
@@ -33,26 +33,6 @@ class List
             end
         end
         
-        def empty
-            if  @head = @tail = nil 
-                return true
-            else
-                return false
-            end
-        end
-        
-        def to_s
-            @aux=head
-            out=""
-            while @aux != nil do
-                dieta=Dieta.new(@aux.value[0],@aux.value[1])
-                raciones=Raciones.new(@aux.value[2],@aux.value[3],@aux.value[4],@aux.value[5],@aux.value[6])
-                out<<"\n#{dieta.m_nombre()}\n"
-                out<<"#{raciones.comidayprop()}\n"
-                out<<"#{raciones.vct()}\n"
-                @aux=@aux.next()
-            end
-            "#{out}"
-        end
-        
-    end
+end
+
+
