@@ -2,26 +2,27 @@
 
 RSpec.describe Pract06 do
 
+	before(:all) do
+
+                        @carne_vaca = Alimento.new("Carne de vaca", 21.1, 0.0, 3.1, 50.0, 164.0)
+                        @carne_cordero = Alimento.new("Carne de cordero",18.0, 0.0, 17.0, 20.0, 185.0)
+                        @camarones = Alimento.new("Camarones (piscifactoría)", 17.6, 1.5, 0.6, 18.0, 2.0,)
+                        @chocolate = Alimento.new("Chocolate", 5.3, 47.0, 30.0, 2.3, 3.4)
+                        @salmon = Alimento.new("Salmón (piscifactoría)", 19.9, 0.0, 13.6, 6.0, 3.7)
+                        @cerdo = Alimento.new("Cerdo",21.5, 0.0, 6.3, 7.6, 11.0)
+                        @pollo = Alimento.new("Pollo", 20.6, 0.0, 5.6, 5.7, 7.1)
+                        @queso = Alimento.new("Queso", 25.0, 1.3, 33.0, 11.0, 41.0)
+                        @cerveza = Alimento.new("Cerveza", 0.5, 3.6, 0.0, 0.24, 0.22)
+                        @leche_vaca = Alimento.new("Leche de vaca", 3.3, 4.8, 3.2, 3.2, 8.9)
+                        @huevos = Alimento.new("Huevos", 13.0, 1.1, 11.0, 4.2, 5.7)
+                        @cafe = Alimento.new("Café", 0.1, 0.0, 0.0, 0.4, 0.3)
+                        @tofu = Alimento.new("Tofu", 8.0, 1.9, 4.8, 2.0, 2.2)
+                        @lentejas = Alimento.new("Lentejas", 23.5, 52.0, 1.4, 0.4, 3.4)
+                        @nuez = Alimento.new("Nuez", 20.0, 21.0, 54.0, 0.3, 7.9)
+                end
+
+
 	describe Alimento do
-
-		before(:all) do
-
-			@carne_vaca = Alimento.new("Carne de vaca", 21.1, 0.0, 3.1, 50.0, 164.0)
-			@carne_cordero = Alimento.new("Carne de cordero",18.0, 0.0, 17.0, 20.0, 185.0)
-			@camarones = Alimento.new("Camarones (piscifactoría)", 17.6, 1.5, 0.6, 18.0, 2.0,)
-			@chocolate = Alimento.new("Chocolate", 5.3, 47.0, 30.0, 2.3, 3.4)
-			@salmon = Alimento.new("Salmón (piscifactoría)", 19.9, 0.0, 13.6, 6.0, 3.7)
-			@cerdo = Alimento.new("Cerdo",21.5, 0.0, 6.3, 7.6, 11.0)
-			@pollo = Alimento.new("Pollo", 20.6, 0.0, 5.6, 5.7, 7.1)
-			@queso = Alimento.new("Queso", 25.0, 1.3, 33.0, 11.0, 41.0)
-			@cerveza = Alimento.new("Cerveza", 0.5, 3.6, 0.0, 0.24, 0.22)
-			@leche_vaca = Alimento.new("Leche de vaca", 3.3, 4.8, 3.2, 3.2, 8.9)
-			@huevos = Alimento.new("Huevos", 13.0, 1.1, 11.0, 4.2, 5.7)
-			@cafe = Alimento.new("Café", 0.1, 0.0, 0.0, 0.4, 0.3)
-			@tofu = Alimento.new("Tofu", 8.0, 1.9, 4.8, 2.0, 2.2)
-			@lentejas = Alimento.new("Lentejas", 23.5, 52.0, 1.4, 0.4, 3.4)
-			@nuez = Alimento.new("Nuez", 20.0, 21.0, 54.0, 0.3, 7.9)
-		end
 
 		context "Crear la clase Alimento: " do
 			it "Hay un nombre para el alimento " do
@@ -89,9 +90,18 @@ RSpec.describe Pract06 do
 	end
 
 	context List do
+		
 		before(:all) do
 			@lista = List.new(nil,nil)
 		end
+
+		it "Se crea un nodo: " do
+			node = Node.new(1,nil,nil)
+			expect(node.value).to eq(1)
+			expect(node.prev).to eq(nil)
+			expect(node.next).to eq(nil)
+		end
+
 		it "La lista está vacía: " do
 			expect(@lista.head).to eq(nil)
 			expect(@lista.tail).to eq(nil)
@@ -101,7 +111,12 @@ RSpec.describe Pract06 do
 			@lista.insert(@carne_vaca)
 			expect(x=@lista.head.value).to eq(@carne_vaca)
 		end
-	end
 
+		it "Insertar varios elementos en la lista: " do
+			@lista.insert_elements([@carne_vaca,@salmon,@chocolate,@nuez])
+			expect(x=@lista.head.value.gei).to eq(@carne_vaca.gei)
+			expect(x=@lista.tail.value).to eq(@chocolate)
+		end
+	end
 
 end

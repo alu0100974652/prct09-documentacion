@@ -33,4 +33,13 @@ class List
 	def extract_tail()
 		@head=@head.next
 	end
+
+	def insert_elements(x)
+		i = 0
+		while i < x.length
+			insert(x[i])
+			i+=1
+		end
+	end
+
 end
