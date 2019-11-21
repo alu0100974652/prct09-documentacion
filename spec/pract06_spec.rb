@@ -1,5 +1,3 @@
-
-
 RSpec.describe Pract06 do
 
 	before(:all) do
@@ -107,16 +105,31 @@ RSpec.describe Pract06 do
 			expect(@lista.tail).to eq(nil)
 		end
 
-		it "Insertar una elemento en la lista: " do
+		it "Insertar un elemento en la lista: " do
 			@lista.insert(@carne_vaca)
-			expect(x=@lista.head.value).to eq(@carne_vaca)
+			@lista.insert(@salmon)
+			expect(@lista.head.value).to eq(@carne_vaca)
+			#expect(@lista.tail.value).to eq(@salmon)
 		end
 
 		it "Insertar varios elementos en la lista: " do
+			#@conjuntos = [@carne_vaca,@salmon,@chocolate,@nuez]
+			#@lista.insert_elements(@conjuntos)
 			@lista.insert_elements([@carne_vaca,@salmon,@chocolate,@nuez])
-			expect(x=@lista.head.value.gei).to eq(@carne_vaca.gei)
-			expect(x=@lista.tail.value).to eq(@chocolate)
+			expect(@lista.head.value.gei).to eq(@carne_vaca.gei)
+			#expect(@lista.tail.value).to eq(@nuez)
 		end
+
+		it "Extraer la cabeza: " do 
+			@lista.insert(@carne_vaca)
+			expect(@lista.extract_head()).to eq(@carne_vaca)
+		end
+
+		it "Extraer la cola: " do 
+			@lista.insert_elements([@carne_vaca,@salmon,@chocolate,@nuez])
+			expect(@lista.extract_tail()).to eq(x=Node.new(@nuez,nil,nil))
+		end
+
 	end
 
 end

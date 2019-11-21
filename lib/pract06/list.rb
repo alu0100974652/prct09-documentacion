@@ -34,12 +34,17 @@ class List
 		@head=@head.next
 	end
 
-	def insert_elements(x)
-		i = 0
-		while i < x.length
-			insert(x[i])
-			i+=1
-		end
-	end
+	def insert_elements(nodos)
+		
+		#i=0
+		#while i < nodos.length do 
+		#	insert(nodos[i])
+		#	i+=1
+		#end
 
+		nodos.each do |x|
+                       insert(x)
+                end
+
+	end
 end
