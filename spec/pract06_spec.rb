@@ -89,11 +89,12 @@ RSpec.describe Pract06 do
 	end
 
 	context List do
-		it "La lista esta llena" do
+		before(:all) do
 			@lista = List.new(nil,nil)
-			@lista.insert(@chocolate)
-			@lista.insert(@salmon)
-			expect(x=@lista.tail.value).to eq(@chocolate)
+		end
+		it "La lista está vacía" do
+			expect(x=@lista.head).to eq(nil)
+			expect(x=@lista.tail).to eq(nil)
 		end
 	end
 
