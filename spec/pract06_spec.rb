@@ -122,12 +122,12 @@ RSpec.describe Pract06 do
 
 		it "Extraer la cabeza: " do 
 			@lista.insert(@carne_vaca)
-			expect(@lista.extract_head()).to eq(@carne_vaca)
+			expect(@lista.extract_head().value).to eq(@carne_vaca)
 		end
 
 		it "Extraer la cola: " do 
 			@lista.insert_elements([@carne_vaca,@salmon,@chocolate,@nuez])
-			expect(@lista.extract_tail()).to eq(x=Node.new(@nuez,nil,nil))
+			expect(@lista.extract_tail().value).to eq(@nuez)
 		end
 
 	end
