@@ -92,9 +92,14 @@ RSpec.describe Pract06 do
 		before(:all) do
 			@lista = List.new(nil,nil)
 		end
-		it "La lista está vacía" do
-			expect(x=@lista.head).to eq(nil)
-			expect(x=@lista.tail).to eq(nil)
+		it "La lista está vacía: " do
+			expect(@lista.head).to eq(nil)
+			expect(@lista.tail).to eq(nil)
+		end
+
+		it "Insertar una elemento en la lista: " do
+			@lista.insert(@carne_vaca)
+			expect(x=@lista.head.value).to eq(@carne_vaca)
 		end
 	end
 
