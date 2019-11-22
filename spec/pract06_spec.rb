@@ -17,6 +17,13 @@ RSpec.describe Pract06 do
                         @tofu = Alimento.new("Tofu", 8.0, 1.9, 4.8, 2.0, 2.2)
                         @lentejas = Alimento.new("Lentejas", 23.5, 52.0, 1.4, 0.4, 3.4)
                         @nuez = Alimento.new("Nuez", 20.0, 21.0, 54.0, 0.3, 7.9)
+
+			@vasca=[@cerdo,@chocolate,@nuez]
+			@española=[@cerveza,@huevos,@chocolate]
+			@vegana=[@nuez,@tofu,@cafe]
+			@locura=[@carne_vaca,@carne_cordero,@cafe]
+			@veg=[@leche_vaca,@chocolate,@huevos]
+
                 end
 
 
@@ -107,17 +114,13 @@ RSpec.describe Pract06 do
 
 		it "Insertar un elemento en la lista: " do
 			@lista.insert(@carne_vaca)
-			@lista.insert(@salmon)
 			expect(@lista.head.value).to eq(@carne_vaca)
-			#expect(@lista.tail.value).to eq(@salmon)
 		end
 
 		it "Insertar varios elementos en la lista: " do
-			#@conjuntos = [@carne_vaca,@salmon,@chocolate,@nuez]
-			#@lista.insert_elements(@conjuntos)
 			@lista.insert_elements([@carne_vaca,@salmon,@chocolate,@nuez])
 			expect(@lista.head.value.gei).to eq(@carne_vaca.gei)
-			#expect(@lista.tail.value).to eq(@nuez)
+			#:expect(@lista.tail.value).to eq(@nuez)
 		end
 
 		it "Extraer la cabeza: " do 
@@ -128,6 +131,59 @@ RSpec.describe Pract06 do
 		it "Extraer la cola: " do 
 			@lista.insert_elements([@carne_vaca,@salmon,@chocolate,@nuez])
 			expect(@lista.extract_tail().value).to eq(@nuez)
+		end
+
+		it "Emisiones diarias de efecto invernadero para cada dieta " do
+			geiespd = @española[0].gei + @española[1].gei + @española[2].gei
+			expect(geiespd).to eq(6.74)
+
+			geivasc = @vasca[0].gei + @vasca[1].gei + @vasca[2].gei
+			expect(geivasc).to eq(10.2)
+
+			geiveg = @veg[0].gei + @veg[1].gei + @veg[2].gei
+			expect(geiveg).to eq(9.7)
+
+			geivegana = @vegana[0].gei + @vegana[1].gei + @vegana[2].gei
+			expect(geivegana.round(1)).to eq(2.70)
+
+			geilocura = @locura[0].gei + @locura[1].gei + @locura[2].gei
+			expect(geilocura).to eq(70.4)
+		end
+
+		it "Emisiones mensuales de efecto invernadero para cada dieta " do
+
+			geiespd = (@española[0].gei + @española[1].gei + @española[2].gei)*31
+			expect(geiespd).to eq(208.94)
+
+			geivasc = (@vasca[0].gei + @vasca[1].gei + @vasca[2].gei)*31
+			expect(geivasc).to eq(316.2)
+
+			geiveg = (@veg[0].gei + @veg[1].gei + @veg[2].gei)*31
+			expect(geiveg).to eq(300.7)
+
+			geivegana = (@vegana[0].gei + @vegana[1].gei + @vegana[2].gei)*31
+			expect(geivegana.round(1)).to eq(83.70)
+
+			geilocura = (@locura[0].gei + @locura[1].gei + @locura[2].gei)*31
+			expect(geilocura).to eq(2182.4)
+		end
+
+		it "Emisiones anuales de efecto invernadero para cada dieta " do
+
+			geiespd = (@española[0].gei + @española[1].gei + @española[2].gei)*365
+			expect(geiespd).to eq(2460.1)
+
+			geivasc = (@vasca[0].gei + @vasca[1].gei + @vasca[2].gei)*365
+			expect(geivasc.round(1)).to eq(3723.0)
+
+			geiveg = (@veg[0].gei + @veg[1].gei + @veg[2].gei)*365
+			expect(geiveg.round(1)).to eq(3540.50)
+
+			geivegana = (@vegana[0].gei + @vegana[1].gei + @vegana[2].gei)*365
+			expect(geivegana.round(1)).to eq(985.50)
+
+			geilocura = (@locura[0].gei + @locura[1].gei + @locura[2].gei)*365
+			expect(geilocura.round(1)).to eq(25696.0)
 		end
 
 	end
