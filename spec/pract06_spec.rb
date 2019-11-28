@@ -349,6 +349,12 @@ RSpec.describe Pract06 do
 
 		end
 
+		it "Porcentaje de lipidos: " do
+
+			expect(@bistecv_con_huevos.porcentaje_lipidos([@carne_vaca.lipidos, @huevos.lipidos], [2.5, 0.2], 270)).to eq("3.7%")
+
+		end
+
 
 
 	end
