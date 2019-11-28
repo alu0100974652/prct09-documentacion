@@ -138,7 +138,7 @@ RSpec.describe Pract06 do
 			@lista = List.new(nil,nil)
 		end
 
-		it "Se crea un nodo: " do
+		it "Prct07-> Se crea un nodo: " do
 			node = Node.new(1,nil,nil)
 			expect(node.value).to eq(1)
 			expect(node.prev).to eq(nil)
@@ -231,7 +231,7 @@ RSpec.describe Pract06 do
 
 	context Alimento do
 
-		it "Alimento incluye #Comparable " do
+		it "Prct08-> Alimento incluye #Comparable " do
 			expect(Alimento.ancestors).to include(Comparable)
 			expect(Alimento).to respond_to(:<=>)
 		end
@@ -259,6 +259,13 @@ RSpec.describe Pract06 do
 		it "#between de Comparable" do
 			expect(@carne_vaca.between?(@nuez,@lentejas)).to eq(false)
 			expect(@carne_vaca.between?(@cafe,@lentejas)).to eq(true)
+		end
+	end
+
+	context List do
+
+		it "Lista incluye #Enumerable" do
+			expect(List.ancestors).to include(Enumerable)
 		end
 	end
 end
