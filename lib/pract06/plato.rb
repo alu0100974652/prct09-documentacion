@@ -17,7 +17,6 @@ class Plato
 
 		tporcentaje_proteinas = 0
 		tporcentaje_proteinas = ((total_proteinas/cantidades_totales_engramos)*100).round(1)
-		puts "#{tporcentaje_proteinas}%"
 		return "#{tporcentaje_proteinas}%"
 	end
 
@@ -33,7 +32,6 @@ class Plato
 
 		tporcentaje_lipidos = 0
 		tporcentaje_lipidos = ((total_lipidos/cantidades_totales_engramos)*100).round(1)
-		puts "#{tporcentaje_lipidos}%"
 		return "#{tporcentaje_lipidos}%"
 
 	end
@@ -50,9 +48,20 @@ class Plato
 
 		tporcentaje_carbohidratos = 0
 		tporcentaje_carbohidratos = ((total_carbohidratos/cantidades_totales_engramos)*100).round(1)
-		puts "#{tporcentaje_carbohidratos}%"
 		return "#{tporcentaje_carbohidratos}%"
 
+	end
+
+	def valor_calorico_total(x_valores_energeticos)
+
+		total_vc = 0
+		i = 0
+		while i < x_valores_energeticos.length do
+			total_vc += x_valores_energeticos[i] + total_vc
+			i += 1
+		end
+
+		return total_vc
 	end
 
 end

@@ -360,6 +360,12 @@ RSpec.describe Pract06 do
 			expect(@bistecv_con_huevos.porcentaje_carbohidratos([@carne_vaca.carbohidratos, @huevos.carbohidratos], [2.5, 0.2], 270)).to eq("0.1%")
 
 		end
+
+		it "Se calcula el Valor Calórico total: " do
+
+			expect(@bistecv_con_huevos.valor_calorico_total([@carne_vaca.valor_energetico, @huevos.valor_energetico])).to eq(299.5)
+
+		end
 		
 	end
 
