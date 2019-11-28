@@ -355,8 +355,12 @@ RSpec.describe Pract06 do
 
 		end
 
+		it "Porcentaje de hidratos de carbono: " do
 
+			expect(@bistecv_con_huevos.porcentaje_carbohidratos([@carne_vaca.carbohidratos, @huevos.carbohidratos], [2.5, 0.2], 270)).to eq("0.1%")
 
+		end
+		
 	end
 
 end
