@@ -24,6 +24,38 @@ RSpec.describe Pract06 do
 			@locura=[@carne_vaca,@carne_cordero,@cafe]
 			@veg=[@leche_vaca,@chocolate,@huevos]
 
+			#LISTA VEGANA
+			@lista_vegana = List.new(nil,nil)
+			@lista_vegana.insert(@nuez)
+			@lista_vegana.insert(@tofu)
+			@lista_vegana.insert(@cafe)
+
+			#LISTA ESPAÑOLA
+			@lista_española = List.new(nil,nil)
+			@lista_española.insert(@cerveza)
+			@lista_española.insert(@huevos)
+			@lista_española.insert(@chocolate)
+
+			#LISTA VASCA
+			@lista_vasca = List.new(nil,nil)
+			@lista_vasca.insert(@cerdo)
+			@lista_vasca.insert(@chocolate)
+			@lista_vasca.insert(@nuez)
+
+			#LISTA LOCURA
+			@lista_locura = List.new(nil,nil)
+			@lista_locura.insert(@carne_vaca)
+			@lista_locura.insert(@carne_cordero)
+			@lista_locura.insert(@cafe)
+
+			#LISTA VEGETARIANA
+			@lista_vegetariana = List.new(nil,nil)
+			@lista_vegetariana.insert(@leche_vaca)
+			@lista_vegetariana.insert(@chocolate)
+			@lista_vegetariana.insert(@huevos)
+
+
+
                 end
 
 
@@ -118,19 +150,20 @@ RSpec.describe Pract06 do
 		end
 
 		it "Insertar varios elementos en la lista: " do
-			@lista.insert_elements([@carne_vaca,@salmon,@chocolate,@nuez])
+			@lista.insert(@carne_vaca)
+			@lista.insert(@salmon)
+			@lista.insert(@chocolate)
+			@lista.insert(@nuez)
 			expect(@lista.head.value.gei).to eq(@carne_vaca.gei)
-			#:expect(@lista.tail.value).to eq(@nuez)
+			expect(@lista.tail.value.gei).to eq(@nuez.gei)
 		end
 
 		it "Extraer la cabeza: " do 
-			@lista.insert(@carne_vaca)
-			expect(@lista.extract_head().value).to eq(@carne_vaca)
+			expect(@lista_vegana.extract_head).to eq(@nuez)
 		end
 
 		it "Extraer la cola: " do 
-			@lista.insert_elements([@carne_vaca,@salmon,@chocolate,@nuez])
-			expect(@lista.extract_tail().value).to eq(@nuez)
+			expect(@lista_vegana.extract_tail).to eq(@cafe)
 		end
 
 		it "Emisiones diarias de efecto invernadero para cada dieta " do
@@ -185,7 +218,5 @@ RSpec.describe Pract06 do
 			geilocura = (@locura[0].gei + @locura[1].gei + @locura[2].gei)*365
 			expect(geilocura.round(1)).to eq(25696.0)
 		end
-
 	end
-
 end
