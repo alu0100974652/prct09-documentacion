@@ -1,9 +1,12 @@
 class Plato_herencia < Plato
+
+	attr_reader :valor_energetico_plato_alimentos
 	
 
-	def initialize(nombre_plato, conjunto_alimentos, cantidades_engramos, cantidades_totales_engramos)
+	def initialize(nombre_plato, conjunto_alimentos, cantidades_engramos, cantidades_totales_engramos, valor_energetico_plato_alimentos)
 
 		super(nombre_plato, conjunto_alimentos, cantidades_engramos, cantidades_totales_engramos)
+		@valor_energetico_plato_alimentos = valor_energetico_plato_alimentos
 
 	end
 	
@@ -37,6 +40,21 @@ class Plato_herencia < Plato
 
 		return total_mc
 
+	end
+
+	def to_s
+
+		i = 0
+		valor = 0
+		while i < valor_energetico_plato_alimentos.length do
+
+			valor = valor_energetico_plato_alimentos[i] + valor
+
+			i += 1
+
+		end
+
+		"Eficiencia energética = #{valor}"
 	end
 
 end

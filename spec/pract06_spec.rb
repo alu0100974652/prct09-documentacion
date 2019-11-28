@@ -379,7 +379,7 @@ RSpec.describe Pract06 do
 
 		before(:all) do
 
-			@bistecv_con_huevos = Plato_herencia.new("Bistec de vaca con huevos", [@carne_vaca.nombre, @huevos.nombre], [2.5, 0.2], 270)
+			@bistecv_con_huevos = Plato_herencia.new("Bistec de vaca con huevos", [@carne_vaca.nombre, @huevos.nombre], [2.5, 0.2], 270, [@carne_vaca.valor_energetico, @huevos.valor_energetico])
 				             
 		end
 
@@ -392,13 +392,27 @@ RSpec.describe Pract06 do
 
 			expect(@bistecv_con_huevos.metros_cuadrados([@carne_vaca.terreno, @huevos.terreno])).to eq(333.7)
 		
-		end	       
+		end
+
+	
+		it "Eficiencia energética formateada: " do
+
+			expect(@bistecv_con_huevos.to_s).to eq("Eficiencia energética = #{@carne_vaca.valor_energetico + @huevos.valor_energetico}")
+
+		end		       
 
 		it "Clase de objeto" do
 
 			expect(@bistecv_con_huevos.class).to eq(Plato_herencia)
 			expect(@bistecv_con_huevos.instance_of? Plato_herencia).to eq(true)
 			expect(@bistecv_con_huevos).to respond_to('metros_cuadrados')
+
+		end
+
+		it "Jerarquía de objeto" do
+
+			expect(@bistecv_con_huevos.is_a? Plato).to eq(true)
+			expect(@bistecv_con_huevos.is_a? Plato_herencia).to eq(true)
 
 		end
 	end
