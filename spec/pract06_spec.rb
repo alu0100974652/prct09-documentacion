@@ -315,7 +315,28 @@ RSpec.describe Pract06 do
                         @lista.insert(@carne_cordero)
                         expect(@lista.sort).to eq([@carne_vaca,@salmon,@carne_cordero,@nuez,@lentejas])
                 end
-
-
 	end
+##############################################################################################################################################
+	
+	context Plato do
+
+		before(:all) do
+
+			@bistecv_con_huevos = Plato.new("Bistec de vaca con huevos", [@carne_vaca.nombre, @huevos.nombre])
+			
+		end
+
+		it "Nombre del alimento" do
+
+			expect(@bistecv_con_huevos.nombre_plato).to eq("Bistec de vaca con huevos")
+
+		end
+
+		it "Conjunto de alimentos" do 
+
+			expect(@bistecv_con_huevos.conjunto_alimentos).to eq([@carne_vaca.nombre, @huevos.nombre])
+
+		end
+	end
+
 end
