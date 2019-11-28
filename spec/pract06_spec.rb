@@ -371,8 +371,21 @@ RSpec.describe Pract06 do
 
 			expect(@bistecv_con_huevos.to_s).to eq("Plato: #{@bistecv_con_huevos.nombre_plato}, \nIngredientes: #{@bistecv_con_huevos.conjunto_alimentos},\nCantidad total del plato: #{@bistecv_con_huevos.cantidades_totales_engramos}, separados en las siguientes cantidades por alimento #{@bistecv_con_huevos.cantidades_engramos}")
 		end
-
-		
 	end
 
+###########################################################################################################################################################################
+
+	context Plato_herencia do
+
+		before(:all) do
+
+			@bistecv_con_huevos = Plato_herencia.new("Bistec de vaca con huevos", [@carne_vaca.nombre, @huevos.nombre], [2.5, 0.2], 270)
+				             
+		end
+
+		it "Calcula el valor de las emisiones totales del alimento " do
+
+			expect(@bistecv_con_huevos.valor_emisiones_total([@carne_vaca.gei, @huevos.gei])).to eq(104.2)
+		end
+	end
 end
