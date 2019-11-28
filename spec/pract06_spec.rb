@@ -264,8 +264,58 @@ RSpec.describe Pract06 do
 
 	context List do
 
+                before(:all) do
+                        @lista = List.new(nil,nil)
+                end
+
+
 		it "Lista incluye #Enumerable" do
 			expect(List.ancestors).to include(Enumerable)
 		end
+
+		it "collect de Enumerable" do
+			@lista.insert(@carne_vaca)
+                        @lista.insert(@nuez)
+			expect(@lista.collect{|i| i.valor_energetico.round(1)*2}).to eq([193.6, 970.0])
+		end
+
+		it "select de Enumerable" do
+                        @lista.insert(@carne_vaca)
+                        @lista.insert(@salmon)
+			@lista.insert(@nuez)
+			@lista.insert(@lentejas)
+			@lista.insert(@carne_cordero)
+			expect(@lista.select{|i| i.valor_energetico.round(1)%2==0 }).to eq([@salmon,@carne_cordero])
+                end
+
+		it "max de Enumerable" do
+			@lista.insert(@carne_vaca)
+                        @lista.insert(@salmon)
+                        @lista.insert(@nuez)
+                        @lista.insert(@lentejas)
+                        @lista.insert(@carne_cordero)
+			expect(@lista.max).to eq(@lentejas)
+		end
+
+		it "min de Enumerable" do
+                        @lista.insert(@carne_vaca)
+                        @lista.insert(@salmon)
+                        @lista.insert(@nuez)
+                        @lista.insert(@lentejas)
+                        @lista.insert(@carne_cordero)
+                        expect(@lista.min).to eq(@carne_vaca)
+                end
+
+		it "sort de Enumerable" do
+			@lista = List.new(nil,nil)
+                        @lista.insert(@carne_vaca)
+                        @lista.insert(@salmon)
+                        @lista.insert(@nuez)
+                        @lista.insert(@lentejas)
+                        @lista.insert(@carne_cordero)
+                        expect(@lista.sort).to eq([@carne_vaca,@salmon,@carne_cordero,@nuez,@lentejas])
+                end
+
+
 	end
 end
