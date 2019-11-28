@@ -59,9 +59,12 @@ RSpec.describe Pract06 do
                 end
 
 
+#############################################################################################################################################
+
+
 	describe Alimento do
 
-		context "Crear la clase Alimento: " do
+		context "Crear la clase Alimento Prct06: " do
 			it "Hay un nombre para el alimento " do
 				expect(@carne_vaca.nombre).to eq("Carne de vaca")
 			end
@@ -125,6 +128,9 @@ RSpec.describe Pract06 do
 			end 
 		end
 	end
+
+
+#############################################################################################################################################
 
 	context List do
 		
@@ -217,6 +223,16 @@ RSpec.describe Pract06 do
 
 			geilocura = (@locura[0].gei + @locura[1].gei + @locura[2].gei)*365
 			expect(geilocura.round(1)).to eq(25696.0)
+		end
+	end
+
+#############################################################################################################################################
+	
+
+	context Alimento do
+
+		it "Alimento incluye #Comparable " do
+			expect(Alimento.ancestors).to include(Comparable)
 		end
 	end
 end
