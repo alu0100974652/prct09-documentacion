@@ -322,7 +322,7 @@ RSpec.describe Pract06 do
 
 		before(:all) do
 
-			@bistecv_con_huevos = Plato.new("Bistec de vaca con huevos", [@carne_vaca.nombre, @huevos.nombre])
+			@bistecv_con_huevos = Plato.new("Bistec de vaca con huevos", [@carne_vaca.nombre, @huevos.nombre], [250, 20])
 			
 		end
 
@@ -337,6 +337,12 @@ RSpec.describe Pract06 do
 			expect(@bistecv_con_huevos.conjunto_alimentos).to eq([@carne_vaca.nombre, @huevos.nombre])
 
 		end
+
+		it "Conjunto de cantidades de alimentos en gramos" do
+			
+			expect(@bistecv_con_huevos.cantidades_engramos).to eq([250, 20])
+		end
+
 	end
 
 end
