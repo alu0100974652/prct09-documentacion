@@ -2,6 +2,9 @@ Node = Struct.new(:value, :next, :prev) #Debe existir un nodo con su dato, su si
 
 class List
 	attr_accessor :head, :nodo_actual,:tail #Debe existir una Lista con su cabeza y su cola
+	
+	include Enumerable
+
 
         def initialize(head,tail)
           	@head = nil
