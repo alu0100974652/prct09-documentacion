@@ -3,7 +3,7 @@ class Alimento
 
 	attr_reader :nombre, :proteinas, :carbohidratos, :lipidos, :gei, :terreno
 
-	#include Comparable
+	include Comparable
 
 	def initialize(nombre, proteinas, carbohidratos, lipidos, gei, terreno)
 		@nombre, @proteinas, @carbohidratos, @lipidos, @gei, @terreno = nombre, proteinas, carbohidratos, lipidos, gei, terreno
