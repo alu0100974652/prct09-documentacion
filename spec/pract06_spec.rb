@@ -383,9 +383,15 @@ RSpec.describe Pract06 do
 				             
 		end
 
-		it "Calcula el valor de las emisiones totales del alimento " do
+		it "Calcula el valor de las emisiones del plato " do
 
 			expect(@bistecv_con_huevos.valor_emisiones_total([@carne_vaca.gei, @huevos.gei])).to eq(104.2)
 		end
+
+		it "Estimación de los metros cuadrados del plato" do
+
+			expect(@bistecv_con_huevos.metros_cuadrados([@carne_vaca.terreno, @huevos.terreno])).to eq(333.7)
+		
+		end	       
 	end
 end
