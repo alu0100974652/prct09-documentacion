@@ -322,7 +322,7 @@ RSpec.describe Pract06 do
 
 		before(:all) do
 
-			@bistecv_con_huevos = Plato.new("Bistec de vaca con huevos", [@carne_vaca.nombre, @huevos.nombre], [250, 20])
+			@bistecv_con_huevos = Plato.new("Bistec de vaca con huevos", [@carne_vaca.nombre, @huevos.nombre], [2.5, 0.2], 270)
 			
 		end
 
@@ -340,8 +340,16 @@ RSpec.describe Pract06 do
 
 		it "Conjunto de cantidades de alimentos en gramos" do
 			
-			expect(@bistecv_con_huevos.cantidades_engramos).to eq([250, 20])
+			expect(@bistecv_con_huevos.cantidades_engramos).to eq([2.5, 0.2])
 		end
+
+		it "Porcentaje de proteinas: " do
+
+			expect(@bistecv_con_huevos.porcentaje_proteinas([@carne_vaca.proteinas, @huevos.proteinas], [2.5, 0.2], 270)).to eq("20.5%")
+
+		end
+
+
 
 	end
 
