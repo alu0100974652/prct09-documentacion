@@ -64,4 +64,9 @@ class Plato
 		return total_vc
 	end
 
+	def to_s
+
+		"Plato: #{@nombre_plato}, \nIngredientes: #{@conjunto_alimentos},\nCantidad total del plato: #{@cantidades_totales_engramos}, separados en las siguientes cantidades por alimento #{@cantidades_engramos}"
+	end
+
 end

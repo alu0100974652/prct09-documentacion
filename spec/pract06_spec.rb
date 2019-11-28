@@ -366,6 +366,12 @@ RSpec.describe Pract06 do
 			expect(@bistecv_con_huevos.valor_calorico_total([@carne_vaca.valor_energetico, @huevos.valor_energetico])).to eq(299.5)
 
 		end
+
+		it "Se obtiene el plato formateado: " do
+
+			expect(@bistecv_con_huevos.to_s).to eq("Plato: #{@bistecv_con_huevos.nombre_plato}, \nIngredientes: #{@bistecv_con_huevos.conjunto_alimentos},\nCantidad total del plato: #{@bistecv_con_huevos.cantidades_totales_engramos}, separados en las siguientes cantidades por alimento #{@bistecv_con_huevos.cantidades_engramos}")
+		end
+
 		
 	end
 
