@@ -393,5 +393,13 @@ RSpec.describe Pract06 do
 			expect(@bistecv_con_huevos.metros_cuadrados([@carne_vaca.terreno, @huevos.terreno])).to eq(333.7)
 		
 		end	       
+
+		it "Clase de objeto" do
+
+			expect(@bistecv_con_huevos.class).to eq(Plato_herencia)
+			expect(@bistecv_con_huevos.instance_of? Plato_herencia).to eq(true)
+			expect(@bistecv_con_huevos).to respond_to('metros_cuadrados')
+
+		end
 	end
 end
