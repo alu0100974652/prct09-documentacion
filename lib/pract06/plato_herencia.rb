@@ -2,11 +2,13 @@ class Plato_herencia < Plato
 
 	attr_reader :valor_energetico_plato_alimentos
 	
+	include Comparable
 
 	def initialize(nombre_plato, conjunto_alimentos, cantidades_engramos, cantidades_totales_engramos, valor_energetico_plato_alimentos)
 
 		super(nombre_plato, conjunto_alimentos, cantidades_engramos, cantidades_totales_engramos)
 		@valor_energetico_plato_alimentos = valor_energetico_plato_alimentos
+		@valor = valor
 
 	end
 	
@@ -42,7 +44,7 @@ class Plato_herencia < Plato
 
 	end
 
-	def to_s
+	def valor
 
 		i = 0
 		valor = 0
@@ -54,7 +56,17 @@ class Plato_herencia < Plato
 
 		end
 
+		return valor
+	end
+
+	def to_s
+
 		"Eficiencia energética = #{valor}"
+	end
+
+	def <=>(other)
+		return nil unless other.kind_of? Plato_herencia
+		@valor <=> other.valor
 	end
 
 end

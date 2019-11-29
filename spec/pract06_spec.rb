@@ -380,6 +380,9 @@ RSpec.describe Pract06 do
 		before(:all) do
 
 			@bistecv_con_huevos = Plato_herencia.new("Bistec de vaca con huevos", [@carne_vaca.nombre, @huevos.nombre], [2.5, 0.2], 270, [@carne_vaca.valor_energetico, @huevos.valor_energetico])
+			@pollo_con_queso = Plato_herencia.new("Pollo con queso", [@pollo.nombre, @queso.nombre], [3.0, 0.6], 360, [@pollo.valor_energetico, @queso.valor_energetico])
+
+			@lentejas_con_salmon = Plato_herencia.new("Lentejas con salmon", [@lentejas.nombre, @salmon.nombre], [1.5, 2.0], 250, [@lentejas.valor_energetico, @salmon.valor_energetico])
 				             
 		end
 
@@ -414,6 +417,36 @@ RSpec.describe Pract06 do
 			expect(@bistecv_con_huevos.is_a? Plato).to eq(true)
 			expect(@bistecv_con_huevos.is_a? Plato_herencia).to eq(true)
 
+		end
+
+		it "Plato_herencia incluye #Comparable " do
+			expect(Plato_herencia.ancestors).to include(Comparable)
+			expect(Plato_herencia).to respond_to(:<=>)
+		end
+
+		it "< de Comparable" do
+		        expect(@bistecv_con_huevos < @pollo_con_queso).to eq(true)
+		        expect(@pollo_con_queso < @bistecv_con_huevos).to eq(false)
+		end
+
+		it "> de Comparable" do
+		        expect(@bistecv_con_huevos > @pollo_con_queso).to eq(false)
+		        expect(@pollo_con_queso > @bistecv_con_huevos).to eq(true)
+		end
+
+		it "<= de Comparable" do
+			expect(@bistecv_con_huevos <= @pollo_con_queso).to eq(true)
+			expect(@pollo_con_queso <= @bistecv_con_huevos).to eq(false)
+		end
+
+		it ">= de Comparable" do
+		        expect(@bistecv_con_huevos >= @pollo_con_queso).to eq(false)
+		        expect(@pollo_con_queso >= @bistecv_con_huevos).to eq(true)
+		end
+
+		it "#between de Comparable" do
+		        expect(@bistecv_con_huevos.between?(@pollo_con_queso,@lentejas_con_salmon)).to eq(false)
+		        expect(@pollo_con_queso.between?(@bistecv_con_huevos,@lentejas_con_salmon)).to eq(true)
 		end
 	end
 end
