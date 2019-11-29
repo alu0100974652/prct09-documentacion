@@ -24,12 +24,47 @@ RSpec.describe Pract06 do
 			@locura=[@carne_vaca,@carne_cordero,@cafe]
 			@veg=[@leche_vaca,@chocolate,@huevos]
 
+			#LISTA VEGANA
+			@lista_vegana = List.new(nil,nil)
+			@lista_vegana.insert(@nuez)
+			@lista_vegana.insert(@tofu)
+			@lista_vegana.insert(@cafe)
+
+			#LISTA ESPAÑOLA
+			@lista_española = List.new(nil,nil)
+			@lista_española.insert(@cerveza)
+			@lista_española.insert(@huevos)
+			@lista_española.insert(@chocolate)
+
+			#LISTA VASCA
+			@lista_vasca = List.new(nil,nil)
+			@lista_vasca.insert(@cerdo)
+			@lista_vasca.insert(@chocolate)
+			@lista_vasca.insert(@nuez)
+
+			#LISTA LOCURA
+			@lista_locura = List.new(nil,nil)
+			@lista_locura.insert(@carne_vaca)
+			@lista_locura.insert(@carne_cordero)
+			@lista_locura.insert(@cafe)
+
+			#LISTA VEGETARIANA
+			@lista_vegetariana = List.new(nil,nil)
+			@lista_vegetariana.insert(@leche_vaca)
+			@lista_vegetariana.insert(@chocolate)
+			@lista_vegetariana.insert(@huevos)
+
+
+
                 end
+
+
+#############################################################################################################################################
 
 
 	describe Alimento do
 
-		context "Crear la clase Alimento: " do
+		context "Crear la clase Alimento Prct06: " do
 			it "Hay un nombre para el alimento " do
 				expect(@carne_vaca.nombre).to eq("Carne de vaca")
 			end
@@ -55,7 +90,7 @@ RSpec.describe Pract06 do
 			end
 
 			it "Existe un metodo para obtener el valor energético del alimento" do
-				expect(@carne_vaca.valor_energetico(@carne_vaca.proteinas,@carne_vaca.carbohidratos,@carne_vaca.lipidos)).to eq(96.8)
+				expect(@carne_vaca.valor_energetico).to eq(96.8)
 			end
 
 			it "Existe un metodo para dar el alimento formateado" do
@@ -65,7 +100,7 @@ RSpec.describe Pract06 do
 			it "Se calcula correctamente el impacto ambiental diario de un hombre 20-39" do
 				impactoGEIh = ((@carne_vaca.gei)*2 + (@salmon.gei)*2 + (@lentejas.gei)*2 + (@nuez.gei)*5).round(1)
 				boolh = false
-				consumoh = ((@carne_vaca.valor_energetico(@carne_vaca.proteinas,@carne_vaca.carbohidratos,@carne_vaca.lipidos))*2 + (@salmon.valor_energetico(@salmon.proteinas,@salmon.carbohidratos,@salmon.lipidos))*2 + (@lentejas.valor_energetico(@lentejas.proteinas,@lentejas.carbohidratos,@lentejas.lipidos))*2 + (@nuez.valor_energetico(@nuez.proteinas,@nuez.carbohidratos,@nuez.lipidos))*5).round(1)
+				consumoh = ((@carne_vaca.valor_energetico)*2 + (@salmon.valor_energetico)*2 + (@lentejas.valor_energetico)*2 + (@nuez.valor_energetico)*5).round(1)
 				ihproteinas = ((@carne_vaca.proteinas)*2 + (@salmon.proteinas)*2 + (@lentejas.proteinas)*2 + (@nuez.proteinas)*5).round(1)
 
 				impactoterrenoh = ((@carne_vaca.terreno)*2 + (@salmon.terreno)*2 + (@lentejas.terreno)*2 + (@nuez.terreno)*5).round(1)
@@ -81,7 +116,7 @@ RSpec.describe Pract06 do
                         it "Se calcula correctamente el impacto ambiental diario de una mujer 20-39" do
                                 impactoGEIm = ((@carne_vaca.gei)*2 + (@salmon.gei)*2 + (@lentejas.gei)*2 + (@nuez.gei)*5).round(1)    
 				boolm = false
-                                consumom = ((@carne_vaca.valor_energetico(@carne_vaca.proteinas,@carne_vaca.carbohidratos,@carne_vaca.lipidos))*2 + (@salmon.valor_energetico(@salmon.proteinas,@salmon.carbohidratos,@salmon.lipidos))*2 + (@lentejas.valor_energetico(@lentejas.proteinas,@lentejas.carbohidratos,@lentejas.lipidos))*2 + (@nuez.valor_energetico(@nuez.proteinas,@nuez.carbohidratos,@nuez.lipidos))*5).round(1)
+                                consumom = ((@carne_vaca.valor_energetico)*2 + (@salmon.valor_energetico)*2 + (@lentejas.valor_energetico)*2 + (@nuez.valor_energetico)*5).round(1)
                                 improteinas = ((@carne_vaca.proteinas)*2 + (@salmon.proteinas)*2 + (@lentejas.proteinas)*2 + (@nuez.proteinas)*5).round(1)
 				impactoterrenom = ((@carne_vaca.terreno)*2 + (@salmon.terreno)*2 + (@lentejas.terreno)*2 + (@nuez.terreno)*5).round(1)   
 				if improteinas >= 41 and 2300 < consumom then
@@ -94,13 +129,16 @@ RSpec.describe Pract06 do
 		end
 	end
 
+
+#############################################################################################################################################
+
 	context List do
 		
 		before(:all) do
 			@lista = List.new(nil,nil)
 		end
 
-		it "Se crea un nodo: " do
+		it "Prct07-> Se crea un nodo: " do
 			node = Node.new(1,nil,nil)
 			expect(node.value).to eq(1)
 			expect(node.prev).to eq(nil)
@@ -118,19 +156,20 @@ RSpec.describe Pract06 do
 		end
 
 		it "Insertar varios elementos en la lista: " do
-			@lista.insert_elements([@carne_vaca,@salmon,@chocolate,@nuez])
+			@lista.insert(@carne_vaca)
+			@lista.insert(@salmon)
+			@lista.insert(@chocolate)
+			@lista.insert(@nuez)
 			expect(@lista.head.value.gei).to eq(@carne_vaca.gei)
-			#:expect(@lista.tail.value).to eq(@nuez)
+			expect(@lista.tail.value.gei).to eq(@nuez.gei)
 		end
 
 		it "Extraer la cabeza: " do 
-			@lista.insert(@carne_vaca)
-			expect(@lista.extract_head().value).to eq(@carne_vaca)
+			expect(@lista_vegana.extract_head).to eq(@nuez)
 		end
 
 		it "Extraer la cola: " do 
-			@lista.insert_elements([@carne_vaca,@salmon,@chocolate,@nuez])
-			expect(@lista.extract_tail().value).to eq(@nuez)
+			expect(@lista_vegana.extract_tail).to eq(@cafe)
 		end
 
 		it "Emisiones diarias de efecto invernadero para cada dieta " do
@@ -185,7 +224,229 @@ RSpec.describe Pract06 do
 			geilocura = (@locura[0].gei + @locura[1].gei + @locura[2].gei)*365
 			expect(geilocura.round(1)).to eq(25696.0)
 		end
-
 	end
 
+#############################################################################################################################################
+	
+
+	context Alimento do
+
+		it "Prct08-> Alimento incluye #Comparable " do
+			expect(Alimento.ancestors).to include(Comparable)
+			expect(Alimento).to respond_to(:<=>)
+		end
+
+		it "< de Comparable" do
+			expect(@carne_vaca < @carne_cordero).to eq(true)
+			expect(@nuez < @leche_vaca).to eq(false)
+		end
+
+		it "> de Comparable" do
+			expect(@carne_vaca > @carne_cordero).to eq(false)
+                        expect(@nuez > @leche_vaca).to eq(true)
+		end
+
+		it "<= de Comparable" do
+			expect(@carne_vaca <= @carne_cordero).to eq(true)
+                        expect(@nuez <= @leche_vaca).to eq(false)
+		end
+
+		it ">= de Comparable" do
+			expect(@carne_vaca >= @carne_cordero).to eq(false)
+                        expect(@nuez >= @leche_vaca).to eq(true)
+		end
+
+		it "#between de Comparable" do
+			expect(@carne_vaca.between?(@nuez,@lentejas)).to eq(false)
+			expect(@carne_vaca.between?(@cafe,@lentejas)).to eq(true)
+		end
+	end
+
+	context List do
+
+                before(:all) do
+                        @lista = List.new(nil,nil)
+                end
+
+
+		it "Lista incluye #Enumerable" do
+			expect(List.ancestors).to include(Enumerable)
+		end
+
+		it "collect de Enumerable" do
+			@lista.insert(@carne_vaca)
+                        @lista.insert(@nuez)
+			expect(@lista.collect{|i| i.valor_energetico.round(1)*2}).to eq([193.6, 970.0])
+		end
+
+		it "select de Enumerable" do
+                        @lista.insert(@carne_vaca)
+                        @lista.insert(@salmon)
+			@lista.insert(@nuez)
+			@lista.insert(@lentejas)
+			@lista.insert(@carne_cordero)
+			expect(@lista.select{|i| i.valor_energetico.round(1)%2==0 }).to eq([@salmon,@carne_cordero])
+                end
+
+		it "max de Enumerable" do
+			@lista.insert(@carne_vaca)
+                        @lista.insert(@salmon)
+                        @lista.insert(@nuez)
+                        @lista.insert(@lentejas)
+                        @lista.insert(@carne_cordero)
+			expect(@lista.max).to eq(@lentejas)
+		end
+
+		it "min de Enumerable" do
+                        @lista.insert(@carne_vaca)
+                        @lista.insert(@salmon)
+                        @lista.insert(@nuez)
+                        @lista.insert(@lentejas)
+                        @lista.insert(@carne_cordero)
+                        expect(@lista.min).to eq(@carne_vaca)
+                end
+
+		it "sort de Enumerable" do
+			@lista = List.new(nil,nil)
+                        @lista.insert(@carne_vaca)
+                        @lista.insert(@salmon)
+                        @lista.insert(@nuez)
+                        @lista.insert(@lentejas)
+                        @lista.insert(@carne_cordero)
+                        expect(@lista.sort).to eq([@carne_vaca,@salmon,@carne_cordero,@nuez,@lentejas])
+                end
+	end
+##############################################################################################################################################
+	
+	context Plato do
+
+		before(:all) do
+
+			@bistecv_con_huevos = Plato.new("Bistec de vaca con huevos", [@carne_vaca.nombre, @huevos.nombre], [2.5, 0.2], 270)
+			
+		end
+
+		it "Nombre del alimento" do
+
+			expect(@bistecv_con_huevos.nombre_plato).to eq("Bistec de vaca con huevos")
+
+		end
+
+		it "Conjunto de alimentos" do 
+
+			expect(@bistecv_con_huevos.conjunto_alimentos).to eq([@carne_vaca.nombre, @huevos.nombre])
+
+		end
+
+		it "Conjunto de cantidades de alimentos en gramos" do
+			
+			expect(@bistecv_con_huevos.cantidades_engramos).to eq([2.5, 0.2])
+		end
+
+		it "Porcentaje de proteinas: " do
+
+			expect(@bistecv_con_huevos.porcentaje_proteinas([@carne_vaca.proteinas, @huevos.proteinas], [2.5, 0.2], 270)).to eq("20.5%")
+
+		end
+
+		it "Porcentaje de lipidos: " do
+
+			expect(@bistecv_con_huevos.porcentaje_lipidos([@carne_vaca.lipidos, @huevos.lipidos], [2.5, 0.2], 270)).to eq("3.7%")
+
+		end
+
+		it "Porcentaje de hidratos de carbono: " do
+
+			expect(@bistecv_con_huevos.porcentaje_carbohidratos([@carne_vaca.carbohidratos, @huevos.carbohidratos], [2.5, 0.2], 270)).to eq("0.1%")
+
+		end
+
+		it "Se calcula el Valor Calórico total: " do
+
+			expect(@bistecv_con_huevos.valor_calorico_total([@carne_vaca.valor_energetico, @huevos.valor_energetico])).to eq(299.5)
+
+		end
+
+		it "Se obtiene el plato formateado: " do
+
+			expect(@bistecv_con_huevos.to_s).to eq("Plato: #{@bistecv_con_huevos.nombre_plato}, \nIngredientes: #{@bistecv_con_huevos.conjunto_alimentos},\nCantidad total del plato: #{@bistecv_con_huevos.cantidades_totales_engramos}, separados en las siguientes cantidades por alimento #{@bistecv_con_huevos.cantidades_engramos}")
+		end
+	end
+
+###########################################################################################################################################################################
+
+	context Plato_herencia do
+
+		before(:all) do
+
+			@bistecv_con_huevos = Plato_herencia.new("Bistec de vaca con huevos", [@carne_vaca.nombre, @huevos.nombre], [2.5, 0.2], 270, [@carne_vaca.valor_energetico, @huevos.valor_energetico])
+			@pollo_con_queso = Plato_herencia.new("Pollo con queso", [@pollo.nombre, @queso.nombre], [3.0, 0.6], 360, [@pollo.valor_energetico, @queso.valor_energetico])
+
+			@lentejas_con_salmon = Plato_herencia.new("Lentejas con salmon", [@lentejas.nombre, @salmon.nombre], [1.5, 2.0], 250, [@lentejas.valor_energetico, @salmon.valor_energetico])
+				             
+		end
+
+		it "Calcula el valor de las emisiones del plato " do
+
+			expect(@bistecv_con_huevos.valor_emisiones_total([@carne_vaca.gei, @huevos.gei])).to eq(104.2)
+		end
+
+		it "Estimación de los metros cuadrados del plato" do
+
+			expect(@bistecv_con_huevos.metros_cuadrados([@carne_vaca.terreno, @huevos.terreno])).to eq(333.7)
+		
+		end
+
+	
+		it "Eficiencia energética formateada: " do
+
+			expect(@bistecv_con_huevos.to_s).to eq("Eficiencia energética = #{@carne_vaca.valor_energetico + @huevos.valor_energetico}")
+
+		end		       
+
+		it "Clase de objeto" do
+
+			expect(@bistecv_con_huevos.class).to eq(Plato_herencia)
+			expect(@bistecv_con_huevos.instance_of? Plato_herencia).to eq(true)
+			expect(@bistecv_con_huevos).to respond_to('metros_cuadrados')
+
+		end
+
+		it "Jerarquía de objeto" do
+
+			expect(@bistecv_con_huevos.is_a? Plato).to eq(true)
+			expect(@bistecv_con_huevos.is_a? Plato_herencia).to eq(true)
+
+		end
+
+		it "Plato_herencia incluye #Comparable " do
+			expect(Plato_herencia.ancestors).to include(Comparable)
+			expect(Plato_herencia).to respond_to(:<=>)
+		end
+
+		it "< de Comparable" do
+		        expect(@bistecv_con_huevos < @pollo_con_queso).to eq(true)
+		        expect(@pollo_con_queso < @bistecv_con_huevos).to eq(false)
+		end
+
+		it "> de Comparable" do
+		        expect(@bistecv_con_huevos > @pollo_con_queso).to eq(false)
+		        expect(@pollo_con_queso > @bistecv_con_huevos).to eq(true)
+		end
+
+		it "<= de Comparable" do
+			expect(@bistecv_con_huevos <= @pollo_con_queso).to eq(true)
+			expect(@pollo_con_queso <= @bistecv_con_huevos).to eq(false)
+		end
+
+		it ">= de Comparable" do
+		        expect(@bistecv_con_huevos >= @pollo_con_queso).to eq(false)
+		        expect(@pollo_con_queso >= @bistecv_con_huevos).to eq(true)
+		end
+
+		it "#between de Comparable" do
+		        expect(@bistecv_con_huevos.between?(@pollo_con_queso,@lentejas_con_salmon)).to eq(false)
+		        expect(@pollo_con_queso.between?(@bistecv_con_huevos,@lentejas_con_salmon)).to eq(true)
+		end
+	end
 end

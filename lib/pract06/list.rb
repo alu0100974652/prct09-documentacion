@@ -2,6 +2,9 @@ Node = Struct.new(:value, :next, :prev) #Debe existir un nodo con su dato, su si
 
 class List
 	attr_accessor :head, :nodo_actual,:tail #Debe existir una Lista con su cabeza y su cola
+	
+	include Enumerable
+
 
         def initialize(head,tail)
           	@head = nil
@@ -9,38 +12,45 @@ class List
         end
         
 	#Se puede insertar un elemento por la cabeza
-        def insert(x)
-		node = Node.new(x,nil,nil)
-		
-		if @head==nil and @tail==nil
-			node.prev=@tail
-			node.next=@head
-			@nodo_actual=node
-			@head=node
-			@tail=node
+        def insert(value)
+		node = Node.new(value,nil)
+		if (@head == nil)
+			@head = node
 		else
-			node.prev=@head
-			node.next=nil
-			@nodo_actual=node
-			@head.next=node
+			@tail.next = node
+			node.prev = @tail
 		end
+
+		@tail=node
         end
 
-	def extract_head()
-		@tail=@tail.next
-	end
+	def extract_head
+            aux=""
+            if (@head == nil)
+                return false
+            else
+                aux = @head.value
+                @head = @head.next
+                return aux
+            end
+        end        
+  
+  	def extract_tail
+            aux=""
+            if(@tail == nil)
+                return false
+            else
+                aux = @tail.value
+                @tail = @tail.prev
+                return aux
+            end
+        end
 
-	def extract_tail()
-		@head=@head.next
-	end
-
-	def insert_elements(nodos)
-		
-		i=0
-		while i < nodos.length do 
-			insert(nodos[i])
-			i+=1
-		end
-
-	end
+	def each
+	    node = head
+            while (node!=nil)
+        	    yield node.value
+        	    node = node.next
+            end
+        end
 end

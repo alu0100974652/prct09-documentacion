@@ -1,4 +1,3 @@
-
 require "pract06"
 
 RSpec.configure do |config|
