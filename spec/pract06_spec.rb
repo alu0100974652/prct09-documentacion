@@ -59,17 +59,16 @@ RSpec.describe Pract06 do
 			@lista_vegetariana.insert(@huevos)
 
 			#PLATOS NO HEREDADOS
-			@bistecv_huevos = Plato.new("Bistec de vaca con huevos", [@carne_vaca.nombre, @huevos.nombre], [2.5, 0.2], 270)
+			@bistecv_huevos = Plato.new("Bistec de vaca con huevos", [@carne_vaca, @huevos], [2.5, 0.2], 270)
 
 			#PLATOS HEREDADOS
 
-			@bistecv_con_huevos = Plato_herencia.new("Bistec de vaca con huevos", [@carne_vaca.nombre, @huevos.nombre], [2.5, 0.2], 270, [@carne_vaca.valor_energetico, @huevos.valor_energetico])
-			@pollo_con_queso = Plato_herencia.new("Pollo con queso", [@pollo.nombre, @queso.nombre], [3.0, 0.6], 360, [@pollo.valor_energetico, @queso.valor_energetico])
-			@lentejas_con_salmon = Plato_herencia.new("Lentejas con salmon", [@lentejas.nombre, @salmon.nombre], [1.5, 2.0], 250, [@lentejas.valor_energetico, @salmon.valor_energetico])
+			@bistecv_con_huevos = Plato_herencia.new("Bistec de vaca con huevos", [@carne_vaca, @huevos], [2.5, 0.2], 270)
+			@pollo_con_queso = Plato_herencia.new("Pollo con queso", [@pollo, @queso], [3.0, 0.6], 360)
+			@lentejas_con_salmon = Plato_herencia.new("Lentejas con salmon", [@lentejas, @salmon], [1.5, 2.0], 250)
 
 			#MENUS
 			@menu1 = [@bistecv_con_huevos, @pollo_con_queso, @lentejas_con_salmon]
-			@precio_menu1 = [11.25, 7.35, 5.9]
 
                 end
 
@@ -183,7 +182,7 @@ RSpec.describe Pract06 do
 			expect(@lista_vegana.extract_tail).to eq(@cafe)
 		end
 
-		it "Emisiones diarias de efecto invernadero para cada dieta " do
+		it "Emisiones diarias de efecto invernadero para cada dieta: " do
 			geiespd = @española[0].gei + @española[1].gei + @española[2].gei
 			expect(geiespd).to eq(6.74)
 
@@ -308,7 +307,7 @@ RSpec.describe Pract06 do
 		end
 
 		it "Conjunto de alimentos" do 
-			expect(@bistecv_huevos.conjunto_alimentos).to eq([@carne_vaca.nombre, @huevos.nombre])
+			expect(@bistecv_huevos.conjunto_alimentos).to eq([@carne_vaca, @huevos])
 		end
 
 		it "Conjunto de cantidades de alimentos en gramos" do
@@ -316,19 +315,19 @@ RSpec.describe Pract06 do
 		end
 
 		it "Porcentaje de proteinas: " do
-			expect(@bistecv_huevos.porcentaje_proteinas([@carne_vaca.proteinas, @huevos.proteinas], [2.5, 0.2], 270)).to eq("20.5%")
+			expect(@bistecv_huevos.porcentaje_proteinas).to eq("20.5%")
 		end
 
 		it "Porcentaje de lipidos: " do
-			expect(@bistecv_huevos.porcentaje_lipidos([@carne_vaca.lipidos, @huevos.lipidos], [2.5, 0.2], 270)).to eq("3.7%")
+			expect(@bistecv_huevos.porcentaje_lipidos).to eq("3.7%")
 		end
 
 		it "Porcentaje de hidratos de carbono: " do
-			expect(@bistecv_huevos.porcentaje_carbohidratos([@carne_vaca.carbohidratos, @huevos.carbohidratos], [2.5, 0.2], 270)).to eq("0.1%")
+			expect(@bistecv_huevos.porcentaje_carbohidratos).to eq("0.1%")
 		end
 
 		it "Se calcula el Valor Calórico total: " do
-			expect(@bistecv_huevos.valor_calorico_total([@carne_vaca.valor_energetico, @huevos.valor_energetico])).to eq(299.5)
+			expect(@bistecv_huevos.valor_calorico_total).to eq(299.5)
 		end
 
 		it "Se obtiene el plato formateado: " do
@@ -342,7 +341,7 @@ RSpec.describe Pract06 do
 
 		it "Calcula el valor de las emisiones del plato " do
 
-			expect(@bistecv_con_huevos.valor_emisiones_total([@carne_vaca.gei, @huevos.gei])).to eq(104.2)
+			expect(@bistecv_con_huevos.total_ve).to eq(104.2)
 		end
 
 		it "Estimación de los metros cuadrados del plato" do
@@ -401,6 +400,19 @@ RSpec.describe Pract06 do
 		it "#between de Comparable" do
 		        expect(@bistecv_con_huevos.between?(@pollo_con_queso,@lentejas_con_salmon)).to eq(false)
 		        expect(@pollo_con_queso.between?(@bistecv_con_huevos,@lentejas_con_salmon)).to eq(true)
+		end
+	end
+
+########################################################################################################################################
+	
+	context "Prct09 -> Menu" do
+
+		it "Creación del menú: " do
+			expect(@menu1).to eq([@bistecv_con_huevos, @pollo_con_queso, @lentejas_con_salmon])
+		end
+
+		it "Se calcula la huella nutricional de un plato:" do
+			expect(@bistecv_con_huevos.huella_nutricional).to eq(1)
 		end
 	end
 end
