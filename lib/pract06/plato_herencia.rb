@@ -1,8 +1,14 @@
+# Implementacion de la clase heredada Plato_herencia
+
 class Plato_herencia < Plato
 
 	attr_reader :valor_energetico_plato_alimentos
 	
 	include Comparable
+
+	# Metodo initialize
+	# @deprecated Metodo para inicializar plato heredado
+	# @param parametros del plato más la utilizacion de la funcion super
 
 	def initialize(nombre_plato, conjunto_alimentos, cantidades_engramos, cantidades_totales_engramos)
 
@@ -13,6 +19,10 @@ class Plato_herencia < Plato
 		@huella_nutricional = huella_nutricional
 
 	end
+
+	# Metodo Emisiones totales del plato
+	# @deprecated Funcion para hallar las emisiones totales del plato
+	# @return Devuelve un entero con las emisiones totales del plato
 	
 	def total_ve
 		
@@ -28,6 +38,11 @@ class Plato_herencia < Plato
 	
 		return total_ve
 	end
+
+	# Metodo metros_cuadrados
+	# @deprecated Sirve para hallar los metodos cuadrados del plato
+	# @param Se le pasa el vector de metros cuadrados de los distintos alimentos que componen el plato
+	# @return Devuelve el valor de los metros cuadrados totales del plato
 
 	def metros_cuadrados(x_metros_cuadrados)
 
@@ -46,6 +61,10 @@ class Plato_herencia < Plato
 
 	end
 
+	# Metodo valor
+	# @deprecated Funcion para hallar el valor energetico del plato heredado
+	# @return Retorna el valor energetico total del plato
+
 	def valor
 
 		i = 0
@@ -60,6 +79,10 @@ class Plato_herencia < Plato
 
 		return valor
 	end
+
+	# Metodo huella nutricional
+	# @deprecated Funcion que halla la huella nutricional
+	# @return Devuelve el resultado de la huella_nutricional
 
 	def huella_nutricional
 
@@ -87,12 +110,16 @@ class Plato_herencia < Plato
 
 	end
 
-
+	# Metodo to_s
+	# @deprecated Da la eficiencia energetica formateada
 
 	def to_s
 
 		"Eficiencia energética = #{valor}"
 	end
+
+	# Metodo <=> 
+	# @deprecated Sirve para comparar la eficiencia energetica entre platos
 
 	def <=>(other)
 		return nil unless other.kind_of? Plato_herencia

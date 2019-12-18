@@ -1,10 +1,18 @@
+# Implementación de la clase Plato
 class Plato
 	attr_accessor :nombre_plato, :conjunto_alimentos, :cantidades_engramos, :cantidades_totales_engramos
 
+	# Método initialize 
+	# @param recibe los distintos parámetros para el plato
+	
 	def initialize(nombre_plato, conjunto_alimentos, cantidades_engramos, cantidades_totales_engramos)
 		@nombre_plato, @conjunto_alimentos, @cantidades_engramos, @cantidades_totales_engramos = nombre_plato, conjunto_alimentos, cantidades_engramos, cantidades_totales_engramos
 	end
-
+	
+	# Metodo de porcentaje_proteinas
+	# @deprecated Sirve para hallar el porcentaje total de proteinas del plato a tratar
+	# @return retorna el valor un string con el porcentaje de proteinas
+	
 	def porcentaje_proteinas
 
 		total_proteinas = 0
@@ -19,7 +27,11 @@ class Plato
 		tporcentaje_proteinas = ((total_proteinas/cantidades_totales_engramos)*100).round(1)
 		return "#{tporcentaje_proteinas}%"
 	end
-
+	
+	# Metodos de porcentaje de lipidos
+	# @deprecated Sirve para hallar el porcentaje de lipidos de un plato
+	# @return Devuelve un string con el porcentaje total de lipidos que posee el plato
+	
 	def porcentaje_lipidos
 
 		total_lipidos = 0
@@ -35,7 +47,10 @@ class Plato
 		return "#{tporcentaje_lipidos}%"
 
 	end
-
+	
+	# Metodo porcentaje de carbohidratos
+	# @deprecated Sirve para hallar el porcentaje de carbohidratos de un plato
+	# @return Retorna un string con el total de porcentaje de carbohidratos
 	def porcentaje_carbohidratos
 
 		total_carbohidratos = 0
@@ -52,6 +67,10 @@ class Plato
 
 	end
 
+	# Metodo valor calorico
+	# @deprecated Sirve para hallar el valor calorico total del plato
+	# @return Devuelve un entero con el valor calorico total del plato
+
 	def valor_calorico_total
 
 		total_vc = 0
@@ -63,6 +82,9 @@ class Plato
 
 		return total_vc
 	end
+
+	# Metodo to_s
+	# @deprecated Sirve para dar el plato en su forma formateada
 
 	def to_s
 
