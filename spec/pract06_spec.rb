@@ -418,5 +418,21 @@ RSpec.describe Pract06 do
 		it "Se calcula el máximo de huella nutricional de un menú dietético: " do
 			expect(@menu1.max_by {|platos_herencia| platos_herencia.huella_nutricional}).to eq(@lentejas_con_salmon)
 		end
+
+		it "Se incrementan los precios del menú dietético según la huella nutricional máxima del plato" do
+			precio_inicial = [11.25, 7.35, 5.9]
+
+			plato_con_hu_nutricional_max = @menu1.max_by {|platos_herencia| platos_herencia.huella_nutricional}
+
+			vect_platos_huell_nt = @menu1.map {|menu1| (menu1.huella_nutricional / plato_con_hu_nutricional_max.huella_nutricional).round(2)}
+
+
+			expect(vect_platos_huell_nt).to eq([0.67, 1.0, 0.67])
+
+			precio_final = [precio_inicial, vect_platos_huell_nt].transpose.map {|x| x.reduce(:+)}
+
+			expect(precio_final).to eq([11.92, 8.35, 6.57])
+
+		end
 	end
 end
