@@ -24,6 +24,10 @@ RSpec.describe Pract06 do
 			@locura=[@carne_vaca,@carne_cordero,@cafe]
 			@veg=[@leche_vaca,@chocolate,@huevos]
 
+
+			#LISTA VACIA
+			@lista = List.new(nil,nil)
+
 			#LISTA VEGANA
 			@lista_vegana = List.new(nil,nil)
 			@lista_vegana.insert(@nuez)
@@ -54,7 +58,17 @@ RSpec.describe Pract06 do
 			@lista_vegetariana.insert(@chocolate)
 			@lista_vegetariana.insert(@huevos)
 
+			#PLATOS NO HEREDADOS
+			@bistecv_huevos = Plato.new("Bistec de vaca con huevos", [@carne_vaca, @huevos], [2.5, 0.2], 270)
 
+			#PLATOS HEREDADOS
+
+			@bistecv_con_huevos = Plato_herencia.new("Bistec de vaca con huevos", [@carne_vaca, @huevos], [2.5, 0.2], 270)
+			@pollo_con_queso = Plato_herencia.new("Pollo con queso", [@pollo, @queso], [3.0, 0.6], 360)
+			@lentejas_con_salmon = Plato_herencia.new("Lentejas con salmon", [@lentejas, @salmon], [1.5, 2.0], 250)
+
+			#MENUS
+			@menu1 = [@bistecv_con_huevos, @lentejas_con_salmon, @pollo_con_queso]
 
                 end
 
@@ -134,10 +148,6 @@ RSpec.describe Pract06 do
 
 	context List do
 		
-		before(:all) do
-			@lista = List.new(nil,nil)
-		end
-
 		it "Prct07-> Se crea un nodo: " do
 			node = Node.new(1,nil,nil)
 			expect(node.value).to eq(1)
@@ -172,7 +182,7 @@ RSpec.describe Pract06 do
 			expect(@lista_vegana.extract_tail).to eq(@cafe)
 		end
 
-		it "Emisiones diarias de efecto invernadero para cada dieta " do
+		it "Emisiones diarias de efecto invernadero para cada dieta: " do
 			geiespd = @española[0].gei + @española[1].gei + @española[2].gei
 			expect(geiespd).to eq(6.74)
 
@@ -264,112 +274,64 @@ RSpec.describe Pract06 do
 
 	context List do
 
-                before(:all) do
-                        @lista = List.new(nil,nil)
-                end
-
-
 		it "Lista incluye #Enumerable" do
 			expect(List.ancestors).to include(Enumerable)
 		end
 
 		it "collect de Enumerable" do
-			@lista.insert(@carne_vaca)
-                        @lista.insert(@nuez)
-			expect(@lista.collect{|i| i.valor_energetico.round(1)*2}).to eq([193.6, 970.0])
+			expect(@lista_locura.collect{|i| i.valor_energetico.round(1)*2}).to eq([193.6, 280.0, 0.8])
 		end
 
 		it "select de Enumerable" do
-                        @lista.insert(@carne_vaca)
-                        @lista.insert(@salmon)
-			@lista.insert(@nuez)
-			@lista.insert(@lentejas)
-			@lista.insert(@carne_cordero)
-			expect(@lista.select{|i| i.valor_energetico.round(1)%2==0 }).to eq([@salmon,@carne_cordero])
+			expect(@lista_locura.select{|i| i.valor_energetico%2==0 }).to eq([@carne_cordero])
                 end
 
 		it "max de Enumerable" do
-			@lista.insert(@carne_vaca)
-                        @lista.insert(@salmon)
-                        @lista.insert(@nuez)
-                        @lista.insert(@lentejas)
-                        @lista.insert(@carne_cordero)
-			expect(@lista.max).to eq(@lentejas)
+			expect(@lista_española.max).to eq(@chocolate)
 		end
 
 		it "min de Enumerable" do
-                        @lista.insert(@carne_vaca)
-                        @lista.insert(@salmon)
-                        @lista.insert(@nuez)
-                        @lista.insert(@lentejas)
-                        @lista.insert(@carne_cordero)
-                        expect(@lista.min).to eq(@carne_vaca)
+                        expect(@lista_vasca.min).to eq(@cerdo)
                 end
 
 		it "sort de Enumerable" do
-			@lista = List.new(nil,nil)
-                        @lista.insert(@carne_vaca)
-                        @lista.insert(@salmon)
-                        @lista.insert(@nuez)
-                        @lista.insert(@lentejas)
-                        @lista.insert(@carne_cordero)
-                        expect(@lista.sort).to eq([@carne_vaca,@salmon,@carne_cordero,@nuez,@lentejas])
+                        expect(@lista_vegetariana.sort).to eq([@leche_vaca, @huevos, @chocolate])
                 end
 	end
 ##############################################################################################################################################
 	
 	context Plato do
 
-		before(:all) do
-
-			@bistecv_con_huevos = Plato.new("Bistec de vaca con huevos", [@carne_vaca.nombre, @huevos.nombre], [2.5, 0.2], 270)
-			
-		end
-
 		it "Nombre del alimento" do
-
-			expect(@bistecv_con_huevos.nombre_plato).to eq("Bistec de vaca con huevos")
-
+			expect(@bistecv_huevos.nombre_plato).to eq("Bistec de vaca con huevos")
 		end
 
 		it "Conjunto de alimentos" do 
-
-			expect(@bistecv_con_huevos.conjunto_alimentos).to eq([@carne_vaca.nombre, @huevos.nombre])
-
+			expect(@bistecv_huevos.conjunto_alimentos).to eq([@carne_vaca, @huevos])
 		end
 
 		it "Conjunto de cantidades de alimentos en gramos" do
-			
-			expect(@bistecv_con_huevos.cantidades_engramos).to eq([2.5, 0.2])
+			expect(@bistecv_huevos.cantidades_engramos).to eq([2.5, 0.2])
 		end
 
 		it "Porcentaje de proteinas: " do
-
-			expect(@bistecv_con_huevos.porcentaje_proteinas([@carne_vaca.proteinas, @huevos.proteinas], [2.5, 0.2], 270)).to eq("20.5%")
-
+			expect(@bistecv_huevos.porcentaje_proteinas).to eq("20.5%")
 		end
 
 		it "Porcentaje de lipidos: " do
-
-			expect(@bistecv_con_huevos.porcentaje_lipidos([@carne_vaca.lipidos, @huevos.lipidos], [2.5, 0.2], 270)).to eq("3.7%")
-
+			expect(@bistecv_huevos.porcentaje_lipidos).to eq("3.7%")
 		end
 
 		it "Porcentaje de hidratos de carbono: " do
-
-			expect(@bistecv_con_huevos.porcentaje_carbohidratos([@carne_vaca.carbohidratos, @huevos.carbohidratos], [2.5, 0.2], 270)).to eq("0.1%")
-
+			expect(@bistecv_huevos.porcentaje_carbohidratos).to eq("0.1%")
 		end
 
 		it "Se calcula el Valor Calórico total: " do
-
-			expect(@bistecv_con_huevos.valor_calorico_total([@carne_vaca.valor_energetico, @huevos.valor_energetico])).to eq(299.5)
-
+			expect(@bistecv_huevos.valor_calorico_total).to eq(299.5)
 		end
 
 		it "Se obtiene el plato formateado: " do
-
-			expect(@bistecv_con_huevos.to_s).to eq("Plato: #{@bistecv_con_huevos.nombre_plato}, \nIngredientes: #{@bistecv_con_huevos.conjunto_alimentos},\nCantidad total del plato: #{@bistecv_con_huevos.cantidades_totales_engramos}, separados en las siguientes cantidades por alimento #{@bistecv_con_huevos.cantidades_engramos}")
+			expect(@bistecv_huevos.to_s).to eq("Plato: #{@bistecv_huevos.nombre_plato}, \nIngredientes: #{@bistecv_huevos.conjunto_alimentos},\nCantidad total del plato: #{@bistecv_huevos.cantidades_totales_engramos}, separados en las siguientes cantidades por alimento #{@bistecv_huevos.cantidades_engramos}")
 		end
 	end
 
@@ -377,18 +339,9 @@ RSpec.describe Pract06 do
 
 	context Plato_herencia do
 
-		before(:all) do
-
-			@bistecv_con_huevos = Plato_herencia.new("Bistec de vaca con huevos", [@carne_vaca.nombre, @huevos.nombre], [2.5, 0.2], 270, [@carne_vaca.valor_energetico, @huevos.valor_energetico])
-			@pollo_con_queso = Plato_herencia.new("Pollo con queso", [@pollo.nombre, @queso.nombre], [3.0, 0.6], 360, [@pollo.valor_energetico, @queso.valor_energetico])
-
-			@lentejas_con_salmon = Plato_herencia.new("Lentejas con salmon", [@lentejas.nombre, @salmon.nombre], [1.5, 2.0], 250, [@lentejas.valor_energetico, @salmon.valor_energetico])
-				             
-		end
-
 		it "Calcula el valor de las emisiones del plato " do
 
-			expect(@bistecv_con_huevos.valor_emisiones_total([@carne_vaca.gei, @huevos.gei])).to eq(104.2)
+			expect(@bistecv_con_huevos.total_ve).to eq(104.2)
 		end
 
 		it "Estimación de los metros cuadrados del plato" do
@@ -447,6 +400,39 @@ RSpec.describe Pract06 do
 		it "#between de Comparable" do
 		        expect(@bistecv_con_huevos.between?(@pollo_con_queso,@lentejas_con_salmon)).to eq(false)
 		        expect(@pollo_con_queso.between?(@bistecv_con_huevos,@lentejas_con_salmon)).to eq(true)
+		end
+	end
+
+########################################################################################################################################
+	
+	context "Prct09 -> Menu" do
+
+		it "Creación del menú: " do
+			expect(@menu1).to eq([@bistecv_con_huevos, @lentejas_con_salmon, @pollo_con_queso])
+		end
+
+		it "Se calcula la huella nutricional de un plato:" do
+			expect(@bistecv_con_huevos.huella_nutricional).to eq(1)
+		end
+
+		it "Se calcula el máximo de huella nutricional de un menú dietético: " do
+			expect(@menu1.max_by {|platos_herencia| platos_herencia.huella_nutricional}).to eq(@lentejas_con_salmon)
+		end
+
+		it "Se incrementan los precios del menú dietético según la huella nutricional máxima del plato" do
+			precio_inicial = [11.25, 7.35, 5.9]
+
+			plato_con_hu_nutricional_max = @menu1.max_by {|platos_herencia| platos_herencia.huella_nutricional}
+
+			vect_platos_huell_nt = @menu1.map {|menu1| (menu1.huella_nutricional / plato_con_hu_nutricional_max.huella_nutricional).round(2)}
+
+
+			expect(vect_platos_huell_nt).to eq([0.67, 1.0, 0.67])
+
+			precio_final = [precio_inicial, vect_platos_huell_nt].transpose.map {|x| x.reduce(:+)}
+
+			expect(precio_final).to eq([11.92, 8.35, 6.57])
+
 		end
 	end
 end

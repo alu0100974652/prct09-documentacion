@@ -1,3 +1,22 @@
+# = prct06.rb
+#
+# Autor:: Adrián Melián Fernández
+#
+# == Introducción de la Clase Alimento
+#
+# Implementación de la clase Alimento
+#
+# === Clase Alimento
+#
+# Definición de la clase Alimento compuesta por
+# * metodo initialize
+# * metodo giv_nombre
+# * metodo giv_gei
+# * metodo giv_terreno
+# * metodo valor_energetico
+# * metodo to_s
+# * <=>
+
 class Alimento
 
 
