@@ -68,7 +68,7 @@ RSpec.describe Pract06 do
 			@lentejas_con_salmon = Plato_herencia.new("Lentejas con salmon", [@lentejas, @salmon], [1.5, 2.0], 250)
 
 			#MENUS
-			@menu1 = [@bistecv_con_huevos, @pollo_con_queso, @lentejas_con_salmon]
+			@menu1 = [@bistecv_con_huevos, @lentejas_con_salmon, @pollo_con_queso]
 
                 end
 
@@ -408,11 +408,15 @@ RSpec.describe Pract06 do
 	context "Prct09 -> Menu" do
 
 		it "Creación del menú: " do
-			expect(@menu1).to eq([@bistecv_con_huevos, @pollo_con_queso, @lentejas_con_salmon])
+			expect(@menu1).to eq([@bistecv_con_huevos, @lentejas_con_salmon, @pollo_con_queso])
 		end
 
 		it "Se calcula la huella nutricional de un plato:" do
 			expect(@bistecv_con_huevos.huella_nutricional).to eq(1)
+		end
+
+		it "Se calcula el máximo de huella nutricional de un menú dietético: " do
+			expect(@menu1.max_by {|platos_herencia| platos_herencia.huella_nutricional}).to eq(@lentejas_con_salmon)
 		end
 	end
 end
